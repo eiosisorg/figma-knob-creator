@@ -1,9 +1,15 @@
 {
-  "name": "SD - Knob Creator",
-  "id": "1030842037042371583",
+  "name": "SD Knob creator",
+  "id": "1522262583766542643",
   "api": "1.0.0",
   "main": "dist/code.js",
   "ui": "dist/ui/index.html",
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ]
+  },
   "editorType": [
     "figma"
   ]

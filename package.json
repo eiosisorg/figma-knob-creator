@@ -1,5 +1,5 @@
 {
-  "name": "figma-knob-creator",
+  "name": "SD-Knob-creator",
   "version": "1.0.0",
   "description": "A Figma plugin for creating rotary knobs.",
   "main": "code.js",
@@ -8,11 +8,8 @@
     "build": "tsc -p tsconfig.json",
     "watch": "rollup --config rollup.config.js -w"
   },
-  "author": {
-    "name": "Erwin Goossen",
-    "email": "erwin@navelpluisje.nl"
-  },
-  "license": "ISC",
+  "author": "",
+  "license": "",
   "devDependencies": {
     "@figma/plugin-typings": "^1.74.0",
     "rollup": "^3.28.0",
