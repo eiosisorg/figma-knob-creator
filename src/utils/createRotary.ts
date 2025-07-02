@@ -8,7 +8,7 @@ import {
 import { createRotationFrame } from "./createRotationFrame";
 import { getAction, hasCenter } from "./hasRotate";
 
-export const createRotary = (nbSteps: number, nbDegrees: number, frameName: string, direction: 'vertical' | 'horizontal') => {
+export const createRotary = (nbSteps: number, nbDegrees: number, nbPadding: number, frameName: string, direction: 'vertical' | 'horizontal') => {
   const isVertical = direction === 'vertical';
   const { degreesStep, startDegrees } = calculateDegrees(nbSteps, nbDegrees);
   const frame = figma.currentPage.selection[0] as FrameNode;
@@ -17,10 +17,6 @@ export const createRotary = (nbSteps: number, nbDegrees: number, frameName: stri
 
   if (isVertical) {
     frame.resizeWithoutConstraints(width, nbSteps * height);
-  } else {
-    const numRow = Math.ceil(Math.sqrt(nbSteps));
-    const numCol = Math.floor(Math.sqrt(nbSteps));
-    frame.resizeWithoutConstraints(numRow * width, numCol * height);
   }
 
   for (let i = 0; i < nbSteps; i++) {
@@ -91,17 +87,21 @@ export const createRotary = (nbSteps: number, nbDegrees: number, frameName: stri
   frame.counterAxisSizingMode = "AUTO";
   frame.layoutWrap = isVertical ? "NO_WRAP" : "WRAP";
 
-  const padding = 0;
+  const padding = nbPadding;
   frame.itemSpacing = padding * 2; // Space between items (optional)
   frame.counterAxisSpacing = padding * 2;
   frame.paddingLeft = padding;
   frame.paddingRight = padding;
-  frame.paddingTop = padding * 2;
-  frame.paddingBottom = padding * 2;
+  frame.paddingTop = padding;
+  frame.paddingBottom = padding;
 
-  const numRow = Math.ceil(Math.sqrt(nbSteps));
-  const numCol = Math.floor(Math.sqrt(nbSteps));
-  //frame.resizeWithoutConstraints(numRow * width, numCol * height);
-  frame.resize(numRow * width, numCol * height);
-
+  if (!isVertical)
+  {
+    const numRow = Math.ceil(Math.sqrt(nbSteps));
+    const numCol = Math.floor(Math.sqrt(nbSteps));
+    const frameWidth = numCol * (width + 2 * nbPadding);
+    const frameHeight = numRow * (height + 2 * nbPadding);
+    figma.notify(`numCol: ${numCol}, numRow: ${numRow}, padding:${nbPadding} width:${frameWidth}, height:${frameHeight}`);
+    frame.resize(frameWidth, frameHeight);
+  }
 }

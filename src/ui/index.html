@@ -337,6 +337,11 @@
                     placeholder="The number of degrees the rotation spans">
             </div>
             <div>
+                <label for="nb-padding" class="label">Padding pixels</label>
+                <input type="number" name="nb-padding" id="nb-padding" class="input__field" value="0"
+                    placeholder="The number of pixel between each frame">
+            </div>
+            <div>
                 <label for="frame-name" class="label">Name for the step frames</label>
                 <input type="text" name="frame-name" id="frame-name" class="input__field"
                     placeholder="The name given to the frame for every step">
@@ -349,7 +354,7 @@
             </div>
             <div class="radio">
                 <input type="radio" name="step-direction" id="step-direction-horizontal" class="radio__button"
-                    value="horizontal">
+                    value="horizontal" checked>
                 <label for="step-direction-horizontal" class="radio__label">Matrix</label>
             </div>
             <div class="pt-xxsmall">

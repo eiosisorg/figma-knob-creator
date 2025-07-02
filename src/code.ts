@@ -12,8 +12,8 @@ if (!figma.currentPage.selection.length) {
 // Show our wonderful ui
 figma.showUI(__html__, {
   width: 450,
-  height: 350,
-  title: 'Create a knob',
+  height: 420,
+  title: 'Slate Digital knob creator',
 })
 
 figma.ui.onmessage = (message) => {
@@ -43,6 +43,7 @@ figma.ui.onmessage = (message) => {
     createRotary(
       parseInt(message['nb-steps'], 10),
       parseInt(message['nb-degrees'], 10),
+      parseInt(message['nb-padding'], 10),
       message['frame-name'] || 'step',
       message['step-direction'] || 'vertical',
     );
